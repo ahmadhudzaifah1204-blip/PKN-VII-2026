@@ -1,0 +1,842 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Media Pembelajaran Interaktif - Pendidikan Pancasila Kelas 7</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+  <style>
+    body { font-family: 'Poppins', sans-serif; background-color: #f4f6f9; color: #1e293b; }
+    .glass-card { background: rgba(255, 255, 255, 0.95); backdrop-filter: blur(10px); border: 1px solid rgba(226, 232, 240, 0.8); }
+    .nav-btn.active { background-color: #ef4444; color: white; font-weight: 600; box-shadow: 0 4px 12px rgba(239, 68, 68, 0.3); }
+    .hide-scrollbar::-webkit-scrollbar { display: none; }
+    .hide-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+    .certificate-border { border: 12px double #b91c1c; }
+  </style>
+</head>
+<body class="bg-slate-100 min-h-screen flex flex-col">
+
+  <!-- HEADER -->
+  <header class="bg-gradient-to-r from-red-700 via-red-600 to-red-800 text-white shadow-xl">
+    <div class="max-w-7xl mx-auto px-4 py-5 sm:px-6 lg:px-8 flex flex-col md:flex-row justify-between items-center gap-4">
+      <div class="flex items-center space-x-4">
+        <div class="bg-white p-3 rounded-2xl shadow-inner text-red-600 text-3xl">
+          <i class="fa-solid font-bold fa-shield-halved"></i>
+        </div>
+        <div>
+          <span class="inline-block bg-red-800/80 text-red-100 text-xs px-3 py-1 rounded-full font-medium tracking-wide uppercase">Mata Pelajaran</span>
+          <h1 class="text-2xl sm:text-3xl font-extrabold tracking-tight">Pendidikan Pancasila</h1>
+          <p class="text-red-100 text-sm font-light mt-0.5"><i class="fa-solid fa-graduation-cap mr-1"></i> Kelas 7 / VII - SMP / MTs</p>
+        </div>
+      </div>
+      
+      <div class="bg-white/10 backdrop-blur-md p-3.5 rounded-xl border border-white/20 flex flex-col sm:flex-row gap-4 text-xs sm:text-sm">
+        <div class="flex items-center space-x-2">
+          <i class="fa-solid fa-chalkboard-user text-yellow-300 text-lg"></i>
+          <div>
+            <p class="text-red-200 text-xs">Guru Pengampu</p>
+            <p class="font-bold text-white">Ahmad Hudzaifah, S.Kom</p>
+          </div>
+        </div>
+        <div class="border-t sm:border-t-0 sm:border-l border-white/20 pt-2 sm:pt-0 sm:pl-4 flex items-center space-x-2">
+          <i class="fa-solid fa-book-bookmark text-yellow-300 text-lg"></i>
+          <div>
+            <p class="text-red-200 text-xs">Topik Pembelajaran</p>
+            <p class="font-bold text-white">Penerapan Nilai-Nilai Pancasila</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- NAVIGATION BAR -->
+  <nav class="bg-white shadow-md sticky top-0 z-50 border-b border-slate-200">
+    <div class="max-w-7xl mx-auto px-2 sm:px-4">
+      <div class="flex overflow-x-auto py-2.5 space-x-2 hide-scrollbar">
+        <button onclick="switchTab('cp')" id="tab-cp" class="nav-btn active flex-shrink-0 px-4 py-2 rounded-xl text-xs sm:text-sm font-medium transition-all duration-200 flex items-center space-x-2">
+          <i class="fa-solid fa-bullseye"></i> <span>1. Capaian Pembelajaran</span>
+        </button>
+        <button onclick="switchTab('m1')" id="tab-m1" class="nav-btn flex-shrink-0 px-4 py-2 rounded-xl text-xs sm:text-sm font-medium text-slate-600 hover:bg-slate-100 transition-all duration-200 flex items-center space-x-2">
+          <i class="fa-solid fa-book-open"></i> <span>2. Pengertian Nilai</span>
+        </button>
+        <button onclick="switchTab('m2')" id="tab-m2" class="nav-btn flex-shrink-0 px-4 py-2 rounded-xl text-xs sm:text-sm font-medium text-slate-600 hover:bg-slate-100 transition-all duration-200 flex items-center space-x-2">
+          <i class="fa-solid fa-user-tie"></i> <span>3. Definisi 10 Ahli</span>
+        </button>
+        <button onclick="switchTab('m3')" id="tab-m3" class="nav-btn flex-shrink-0 px-4 py-2 rounded-xl text-xs sm:text-sm font-medium text-slate-600 hover:bg-slate-100 transition-all duration-200 flex items-center space-x-2">
+          <i class="fa-solid fa-sitemap"></i> <span>4. Klasifikasi Nilai</span>
+        </button>
+        <button onclick="switchTab('m4')" id="tab-m4" class="nav-btn flex-shrink-0 px-4 py-2 rounded-xl text-xs sm:text-sm font-medium text-slate-600 hover:bg-slate-100 transition-all duration-200 flex items-center space-x-2">
+          <i class="fa-solid fa-cubes"></i> <span>5. Sifat Nilai</span>
+        </button>
+        <button onclick="switchTab('m5')" id="tab-m5" class="nav-btn flex-shrink-0 px-4 py-2 rounded-xl text-xs sm:text-sm font-medium text-slate-600 hover:bg-slate-100 transition-all duration-200 flex items-center space-x-2">
+          <i class="fa-solid fa-layer-group"></i> <span>6. Wujud Praksis</span>
+        </button>
+        <button onclick="switchTab('game')" id="tab-game" class="nav-btn flex-shrink-0 px-4 py-2 rounded-xl text-xs sm:text-sm font-medium text-slate-600 hover:bg-slate-100 transition-all duration-200 flex items-center space-x-2">
+          <i class="fa-solid fa-gamepad text-emerald-600"></i> <span>7. Intermezzo Game</span>
+        </button>
+        <button onclick="switchTab('eval')" id="tab-eval" class="nav-btn flex-shrink-0 px-4 py-2 rounded-xl text-xs sm:text-sm font-medium text-slate-600 hover:bg-slate-100 transition-all duration-200 flex items-center space-x-2">
+          <i class="fa-solid fa-pen-to-square text-amber-600"></i> <span>8. Evaluasi & Sertifikat</span>
+        </button>
+      </div>
+    </div>
+  </nav>
+
+  <!-- MAIN CONTENT AREA -->
+  <main class="flex-grow max-w-7xl w-full mx-auto px-4 py-8">
+
+    <!-- 1. CAPAIAN PEMBELAJARAN -->
+    <section id="content-cp" class="tab-content block">
+      <div class="glass-card rounded-3xl p-6 sm:p-10 shadow-lg border-l-8 border-red-600">
+        <div class="flex items-center space-x-3 mb-6">
+          <span class="p-3 bg-red-100 text-red-600 rounded-2xl text-2xl"><i class="fa-solid fa-award"></i></span>
+          <div>
+            <h2 class="text-2xl sm:text-3xl font-bold text-slate-800">Capaian Pembelajaran (CP)</h2>
+            <p class="text-sm text-slate-500">Target kompetensi yang wajib dicapai siswa Kelas VII</p>
+          </div>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mt-8">
+          <div class="bg-white p-6 rounded-2xl border border-slate-200 shadow-sm hover:shadow-md transition-shadow flex items-start space-x-4">
+            <div class="bg-red-500 text-white w-10 h-10 rounded-xl flex items-center justify-center font-bold text-lg flex-shrink-0">1</div>
+            <div>
+              <h3 class="font-bold text-lg text-slate-800 mb-1">Memahami Nilai Pokok Pancasila</h3>
+              <p class="text-slate-600 text-sm leading-relaxed">Siswa mampu mengidentifikasi dan memahami konsep dasar serta hakikat nilai pokok yang terkandung dalam Pancasila secara teoretis maupun filosofis.</p>
+            </div>
+          </div>
+
+          <div class="bg-white p-6 rounded-2xl border border-slate-200 shadow-sm hover:shadow-md transition-shadow flex items-start space-x-4">
+            <div class="bg-red-500 text-white w-10 h-10 rounded-xl flex items-center justify-center font-bold text-lg flex-shrink-0">2</div>
+            <div>
+              <h3 class="font-bold text-lg text-slate-800 mb-1">Mendeskripsikan Makna Tiap Sila</h3>
+              <p class="text-slate-600 text-sm leading-relaxed">Siswa mampu menjelaskan makna substansial mendalam dari Sila Pertama hingga Sila Kelima beserta pilar moral dan etika yang dianutnya.</p>
+            </div>
+          </div>
+
+          <div class="bg-white p-6 rounded-2xl border border-slate-200 shadow-sm hover:shadow-md transition-shadow flex items-start space-x-4">
+            <div class="bg-red-500 text-white w-10 h-10 rounded-xl flex items-center justify-center font-bold text-lg flex-shrink-0">3</div>
+            <div>
+              <h3 class="font-bold text-lg text-slate-800 mb-1">Menganalisis Kesatuan Utuh</h3>
+              <p class="text-slate-600 text-sm leading-relaxed">Siswa mampu menganalisis hubungan antar-sila yang saling mengikat, saling menjiwai, dan merupakan satu kesatuan sistem filsafat yang tidak terpisahkan.</p>
+            </div>
+          </div>
+
+          <div class="bg-white p-6 rounded-2xl border border-slate-200 shadow-sm hover:shadow-md transition-shadow flex items-start space-x-4">
+            <div class="bg-red-500 text-white w-10 h-10 rounded-xl flex items-center justify-center font-bold text-lg flex-shrink-0">4</div>
+            <div>
+              <h3 class="font-bold text-lg text-slate-800 mb-1">Menerapkan Nilai Praksis</h3>
+              <p class="text-slate-600 text-sm leading-relaxed">Siswa mampu mewujudkan sikap dan perilaku konsisten yang mencerminkan nilai Pancasila dalam lingkungan keluarga, sekolah, masyarakat, dan negara.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 2. PENGERTIAN NILAI-NILAI PANCASILA -->
+    <section id="content-m1" class="tab-content hidden">
+      <div class="glass-card rounded-3xl p-6 sm:p-10 shadow-lg space-y-8">
+        <div class="border-b pb-4 border-slate-200">
+          <span class="text-xs font-bold text-red-600 tracking-wider uppercase">Materi Pembelajaran 01</span>
+          <h2 class="text-2xl sm:text-3xl font-extrabold text-slate-800">Pengertian Nilai-Nilai Pancasila</h2>
+        </div>
+
+        <div class="prose max-w-none text-slate-700 leading-relaxed space-y-4">
+          <p class="text-base sm:text-lg">
+            Secara etimologis, kata <strong>"nilai"</strong> berasal dari bahasa Latin <em>valere</em> yang berarti kuat, baik, berharga, atau berguna. Dalam konteks filsafat kewarganegaraan, nilai adalah kualitas atau sifat dari sesuatu yang menyebabkan hal tersebut disukai, diinginkan, berguna, dan dijunjung tinggi oleh manusia.
+          </p>
+          <p>
+            <strong>Nilai-Nilai Pancasila</strong> merupakan kumpulan norma, pilar moral, cita-cita, serta prinsip pandangan hidup bangsa Indonesia yang diambil langsung dari akar budaya, tradisi, adat istiadat, dan nilai keagamaan masyarakat Nusantara yang telah mengakar selama berabad-abad.
+          </p>
+        </div>
+
+        <!-- Detail Per Sila & Contoh -->
+        <div class="space-y-6 pt-4">
+          <h3 class="text-xl font-bold text-slate-800 flex items-center"><i class="fa-solid fa-list-check text-red-600 mr-2"></i> Rincian Makna & Contoh Implementasi Sila Pancasila:</h3>
+
+          <div class="grid grid-cols-1 gap-4">
+            <!-- Sila 1 -->
+            <div class="bg-amber-50 p-5 rounded-2xl border border-amber-200">
+              <h4 class="font-bold text-amber-900 text-lg flex items-center"><i class="fa-solid fa-star text-amber-500 mr-2"></i> Sila 1: Ketuhanan Yang Maha Esa</h4>
+              <p class="text-slate-700 text-sm mt-1">Mengakui keberadaan Tuhan sebagai pencipta alam semesta dan menjamin kebebasan beragama bagi seluruh warga negara.</p>
+              <div class="mt-3 bg-white p-3 rounded-xl border border-amber-100 text-xs sm:text-sm text-slate-600">
+                <strong>Contoh Nyata:</strong> Menghormati teman yang sedang berpuasa, tidak memaksakan agama kepada orang lain, dan beribadah tepat waktu.
+              </div>
+            </div>
+
+            <!-- Sila 2 -->
+            <div class="bg-red-50 p-5 rounded-2xl border border-red-200">
+              <h4 class="font-bold text-red-900 text-lg flex items-center"><i class="fa-solid fa-heart text-red-500 mr-2"></i> Sila 2: Kemanusiaan yang Adil dan Beradab</h4>
+              <p class="text-slate-700 text-sm mt-1">Menjunjung tinggi harkat, martabat, dan hak asasi manusia tanpa membeda-bedakan suku, agama, ras, maupun status sosial.</p>
+              <div class="mt-3 bg-white p-3 rounded-xl border border-red-100 text-xs sm:text-sm text-slate-600">
+                <strong>Contoh Nyata:</strong> Membantu korban bencana alam, tidak melakukan perundungan (bullying) di sekolah, serta sopan kepada orang tua.
+              </div>
+            </div>
+
+            <!-- Sila 3 -->
+            <div class="bg-emerald-50 p-5 rounded-2xl border border-emerald-200">
+              <h4 class="font-bold text-emerald-900 text-lg flex items-center"><i class="fa-solid fa-tree text-emerald-500 mr-2"></i> Sila 3: Persatuan Indonesia</h4>
+              <p class="text-slate-700 text-sm mt-1">Menempatkan kepentingan bangsa dan negara di atas kepentingan pribadi maupun kelompok demi terwujudnya keutuhan NKRI.</p>
+              <div class="mt-3 bg-white p-3 rounded-xl border border-emerald-100 text-xs sm:text-sm text-slate-600">
+                <strong>Contoh Nyata:</strong> Menggunakan produk buatan dalam negeri, berteman tanpa memandang perbedaan suku, dan giat belajar demi kemajuan negara.
+              </div>
+            </div>
+
+            <!-- Sila 4 -->
+            <div class="bg-blue-50 p-5 rounded-2xl border border-blue-200">
+              <h4 class="font-bold text-blue-900 text-lg flex items-center"><i class="fa-solid fa-comments text-blue-500 mr-2"></i> Sila 4: Kerakyatan yang Dipimpin oleh Hikmat Kebijaksanaan dalam Permusyawaratan/Perwakilan</h4>
+              <p class="text-slate-700 text-sm mt-1">Mengutamakan musyawarah mufakat dalam setiap pengambilan keputusan bersama secara bijaksana.</p>
+              <div class="mt-3 bg-white p-3 rounded-xl border border-blue-100 text-xs sm:text-sm text-slate-600">
+                <strong>Contoh Nyata:</strong> Pemilihan ketua kelas secara terbuka, menerima hasil keputusan rapat kelas dengan lapang dada.
+              </div>
+            </div>
+
+            <!-- Sila 5 -->
+            <div class="bg-purple-50 p-5 rounded-2xl border border-purple-200">
+              <h4 class="font-bold text-purple-900 text-lg flex items-center"><i class="fa-solid fa-wheat-awn text-purple-500 mr-2"></i> Sila 5: Keadilan Sosial bagi Seluruh Rakyat Indonesia</h4>
+              <p class="text-slate-700 text-sm mt-1">Mewujudkan keseimbangan antara hak dan kewajiban serta memelihara kesetaraan sosial bagi seluruh rakyat.</p>
+              <div class="mt-3 bg-white p-3 rounded-xl border border-purple-100 text-xs sm:text-sm text-slate-600">
+                <strong>Contoh Nyata:</strong> Tidak berbuat boros, menghargai hasil karya orang lain, dan melaksanakan piket kelas bersama secara adil.
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 3. DEFINISI NILAI OLEH PARA AHLI -->
+    <section id="content-m2" class="tab-content hidden">
+      <div class="glass-card rounded-3xl p-6 sm:p-10 shadow-lg space-y-6">
+        <div class="border-b pb-4 border-slate-200">
+          <span class="text-xs font-bold text-red-600 tracking-wider uppercase">Materi Pembelajaran 02</span>
+          <h2 class="text-2xl sm:text-3xl font-extrabold text-slate-800">Definisi Nilai Menurut 10 Ahli</h2>
+          <p class="text-slate-500 text-sm mt-1">Kajian komprehensif teori nilai menurut para pakar sosiologi dan filsafat ternama</p>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6" id="expert-container">
+          <!-- JS insert experts -->
+        </div>
+      </div>
+    </section>
+
+    <!-- 4. KLASIFIKASI NILAI PANCASILA -->
+    <section id="content-m3" class="tab-content hidden">
+      <div class="glass-card rounded-3xl p-6 sm:p-10 shadow-lg space-y-8">
+        <div class="border-b pb-4 border-slate-200">
+          <span class="text-xs font-bold text-red-600 tracking-wider uppercase">Materi Pembelajaran 03</span>
+          <h2 class="text-2xl sm:text-3xl font-extrabold text-slate-800">Klasifikasi Nilai Pancasila</h2>
+          <p class="text-slate-500 text-sm mt-1">Pembagian nilai menurut Prof. Dr. Notonagoro, S.H.</p>
+        </div>
+
+        <p class="text-slate-700 leading-relaxed">
+          Menurut Guru Besar Filsafat Pancasila <strong>Prof. Dr. Notonagoro</strong>, nilai yang ada di dalam kehidupan manusia dapat diklasifikasikan menjadi <strong>3 kelompok besar</strong>:
+        </p>
+
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+          <div class="bg-white p-6 rounded-2xl border-2 border-slate-200 shadow-md hover:border-red-500 transition-all">
+            <div class="w-12 h-12 bg-red-100 text-red-600 rounded-xl flex items-center justify-center text-2xl font-bold mb-4"><i class="fa-solid fa-cube"></i></div>
+            <h3 class="text-xl font-bold text-slate-800 mb-2">1. Nilai Material</h3>
+            <p class="text-sm text-slate-600 leading-relaxed mb-4">Segala sesuatu yang berguna bagi unsur jasmani atau fisik tubuh manusia.</p>
+            <div class="bg-slate-50 p-3 rounded-xl border text-xs text-slate-700">
+              <strong>Contoh:</strong> Makanan, pakaian, obat-obatan, dan tempat tinggal untuk keberlangsungan fisik.
+            </div>
+          </div>
+
+          <div class="bg-white p-6 rounded-2xl border-2 border-slate-200 shadow-md hover:border-red-500 transition-all">
+            <div class="w-12 h-12 bg-blue-100 text-blue-600 rounded-xl flex items-center justify-center text-2xl font-bold mb-4"><i class="fa-solid fa-bolt"></i></div>
+            <h3 class="text-xl font-bold text-slate-800 mb-2">2. Nilai Vital</h3>
+            <p class="text-sm text-slate-600 leading-relaxed mb-4">Segala sesuatu yang berguna bagi manusia untuk dapat mengadakan kegiatan atau aktivitas hidup.</p>
+            <div class="bg-slate-50 p-3 rounded-xl border text-xs text-slate-700">
+              <strong>Contoh:</strong> Buku bagi pelajar, cangkul bagi petani, serta komputer bagi programmer untuk bekerja.
+            </div>
+          </div>
+
+          <div class="bg-white p-6 rounded-2xl border-2 border-slate-200 shadow-md hover:border-red-500 transition-all">
+            <div class="w-12 h-12 bg-emerald-100 text-emerald-600 rounded-xl flex items-center justify-center text-2xl font-bold mb-4"><i class="fa-solid fa-feather-pointed"></i></div>
+            <h3 class="text-xl font-bold text-slate-800 mb-2">3. Nilai Kerohanian</h3>
+            <p class="text-sm text-slate-600 leading-relaxed mb-4">Segala sesuatu yang berguna bagi jiwa, rohani, dan batiniah manusia.</p>
+            <div class="bg-slate-50 p-3 rounded-xl border text-xs text-slate-700">
+              <strong>Sub-kategori:</strong> Nilai Kebenaran (Akal), Nilai Keindahan (Estetika), Nilai Kebaikan/Moral (Etika), dan Nilai Keagamaan (Religius).
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 5. SIFAT NILAI-NILAI PANCASILA -->
+    <section id="content-m4" class="tab-content hidden">
+      <div class="glass-card rounded-3xl p-6 sm:p-10 shadow-lg space-y-8">
+        <div class="border-b pb-4 border-slate-200">
+          <span class="text-xs font-bold text-red-600 tracking-wider uppercase">Materi Pembelajaran 04</span>
+          <h2 class="text-2xl sm:text-3xl font-extrabold text-slate-800">Sifat Nilai-Nilai Pancasila</h2>
+        </div>
+
+        <div class="space-y-6">
+          <!-- 1. Hierarkis Piramidal -->
+          <div class="bg-white p-6 rounded-2xl border border-slate-200 shadow-sm">
+            <h3 class="text-xl font-bold text-red-600 flex items-center mb-3">
+              <i class="fa-solid fa-pyramid-mora0 mr-2"></i> 1. Sifat Hierarkis Piramidal
+            </h3>
+            <p class="text-slate-700 text-sm leading-relaxed mb-3">
+              <strong>Pengertian & Penjelasan:</strong> Susunan Pancasila memiliki urutan yang logis dan berbentuk piramida berjenjang. Sila pertama (Ketuhanan) berada di puncak mendasari, menjiwai, dan melingkupi keempat sila di bawahnya. Sila kedua didasari sila pertama dan menjiwai sila 3, 4, 5, dan seterusnya. Kesemuanya mengikat sebagai satu kesatuan organis yang tak dapat dipisah-pisahkan.
+            </p>
+            <div class="bg-slate-50 p-3 rounded-xl text-xs text-slate-600">
+              <strong>Referensi:</strong> Prof. Dr. Kaelan, M.S. (2010) - <em>Filsafat Pancasila</em>.<br>
+              <strong>Contoh:</strong> Sila Kemanusiaan (Sila 2) di Indonesia harus berlandaskan etika Keagamaan (Sila 1), bukan kemanusiaan sekuler atau liberal.
+            </div>
+          </div>
+
+          <!-- 2. Objektif dan Subjektif -->
+          <div class="bg-white p-6 rounded-2xl border border-slate-200 shadow-sm">
+            <h3 class="text-xl font-bold text-red-600 flex items-center mb-3">
+              <i class="fa-solid fa-scale-balanced mr-2"></i> 2. Sifat Objektif dan Subjektif
+            </h3>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-4 text-sm text-slate-700">
+              <div class="bg-red-50/50 p-4 rounded-xl border border-red-100">
+                <h4 class="font-bold text-red-800 mb-1">Bersifat OBJEKTIF:</h4>
+                <p>Rumusan Pancasila bersifat umum abstrak, intinya bertahan sepanjang masa, serta termuat dalam Pembukaan UUD 1945 sebagai Pokok Kaidah Negara yang Fundamental (Staatsfundamentalnorm).</p>
+              </div>
+              <div class="bg-slate-50 p-4 rounded-xl border border-slate-200">
+                <h4 class="font-bold text-slate-800 mb-1">Bersifat SUBJEKTIF:</h4>
+                <p>Nilai-nilai Pancasila timbul dan melekat langsung dalam akal, rasa, serta hati sanubari bangsa Indonesia sendiri sebagai jati diri dan kepribadian nasional.</p>
+              </div>
+            </div>
+            <div class="bg-slate-50 p-3 rounded-xl text-xs text-slate-600 mt-3">
+              <strong>Referensi:</strong> Laboratorium Pancasila IKIP Malang.<br>
+              <strong>Contoh:</strong> Prinsip Ketuhanan bersifat universal/objektif, namun diekspresikan secara khas (subjektif) sesuai dengan keanekaragaman budaya lokal masyarakat Indonesia.
+            </div>
+          </div>
+
+          <!-- 3. Absolut atau Mutlak -->
+          <div class="bg-white p-6 rounded-2xl border border-slate-200 shadow-sm">
+            <h3 class="text-xl font-bold text-red-600 flex items-center mb-3">
+              <i class="fa-solid fa-lock mr-2"></i> 3. Sifat Absolut atau Mutlak
+            </h3>
+            <p class="text-slate-700 text-sm leading-relaxed mb-3">
+              <strong>Pengertian & Penjelasan:</strong> Nilai-nilai dasar Pancasila bersifat kebenarannya hakiki, tidak berubah oleh perkembangan zaman, dan berlaku kapan saja serta di mana saja bagi bangsa Indonesia. Nilai Pancasila bukan buatan penguasa melainkan galian kebenaran kodrati manusia.
+            </p>
+            <div class="bg-slate-50 p-3 rounded-xl text-xs text-slate-600">
+              <strong>Referensi:</strong> Darmodiharjo, D. (1996) - <em>Santiaji Pancasila</em>.<br>
+              <strong>Contoh:</strong> Nilai Keadilan dan Perikemanusiaan akan selamanya mutlak dianggap baik dan benar sampai kapan pun, tidak akan berubah menjadi buruk.
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 6. WUJUD PRAKSIS NILAI PANCASILA -->
+    <section id="content-m5" class="tab-content hidden">
+      <div class="glass-card rounded-3xl p-6 sm:p-10 shadow-lg space-y-8">
+        <div class="border-b pb-4 border-slate-200">
+          <span class="text-xs font-bold text-red-600 tracking-wider uppercase">Materi Pembelajaran 05</span>
+          <h2 class="text-2xl sm:text-3xl font-extrabold text-slate-800">Wujud Praksis Nilai-Nilai Pancasila</h2>
+          <p class="text-slate-500 text-sm mt-1">Tingkatan Nilai: Nilai Dasar, Nilai Instrumental, dan Nilai Praksis</p>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+          <div class="bg-white p-6 rounded-2xl border border-slate-200 shadow-sm">
+            <span class="bg-red-100 text-red-700 text-xs px-2.5 py-1 rounded-full font-bold">Tingkat 1</span>
+            <h3 class="text-xl font-bold text-slate-800 mt-2 mb-2">Nilai Dasar</h3>
+            <p class="text-xs text-slate-600 leading-relaxed mb-3">
+              <strong>Pengertian:</strong> Hakekat kelima sila Pancasila yang bersifat abstrak, universal, dan belum mengalami penyesuaian khusus. Nilai ini menjadi fondasi utama yang abadi.
+            </p>
+            <p class="text-xs text-slate-500 mb-2"><strong>Referensi:</strong> Moerdiono (1998).</p>
+            <div class="bg-slate-50 p-2.5 rounded-lg text-xs border text-slate-700">
+              <strong>Contoh:</strong> Nilai Ketuhanan, Nilai Kemanusiaan, Nilai Persatuan, Nilai Kerakyatan, dan Nilai Keadilan.
+            </div>
+          </div>
+
+          <div class="bg-white p-6 rounded-2xl border border-slate-200 shadow-sm">
+            <span class="bg-amber-100 text-amber-700 text-xs px-2.5 py-1 rounded-full font-bold">Tingkat 2</span>
+            <h3 class="text-xl font-bold text-slate-800 mt-2 mb-2">Nilai Instrumental</h3>
+            <p class="text-xs text-slate-600 leading-relaxed mb-3">
+              <strong>Pengertian:</strong> Jabatan, panduan, arahan, dan sarana pelaksanaan nilai dasar berupa peraturan perundang-undangan dan tata hukum negara yang dinamis.
+            </p>
+            <p class="text-xs text-slate-500 mb-2"><strong>Referensi:</strong> Oetojo Oesman (1993).</p>
+            <div class="bg-slate-50 p-2.5 rounded-lg text-xs border text-slate-700">
+              <strong>Contoh:</strong> UUD 1945, Pasal-pasal HAM, UU Pendidikan Nasional, Peraturan Sekolah, dan Tata Tertib.
+            </div>
+          </div>
+
+          <div class="bg-white p-6 rounded-2xl border border-slate-200 shadow-sm">
+            <span class="bg-emerald-100 text-emerald-700 text-xs px-2.5 py-1 rounded-full font-bold">Tingkat 3</span>
+            <h3 class="text-xl font-bold text-slate-800 mt-2 mb-2">Nilai Praksis</h3>
+            <p class="text-xs text-slate-600 leading-relaxed mb-3">
+              <strong>Pengertian:</strong> Realisasi nyata nilai-nilai instrumental dalam kehidupan sehari-hari secara kongkrit di lapangan oleh warga negara.
+            </p>
+            <p class="text-xs text-slate-500 mb-2"><strong>Referensi:</strong> Alfian (1991).</p>
+            <div class="bg-slate-50 p-2.5 rounded-lg text-xs border text-slate-700">
+              <strong>Contoh:</strong> Melaksanakan kebiasaan membuang sampah pada tempatnya, menolong teman yang jatuh, dan menghormati hak sesama.
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 7. INTERMEZZO GAME -->
+    <section id="content-game" class="tab-content hidden">
+      <div class="glass-card rounded-3xl p-6 sm:p-10 shadow-lg space-y-6">
+        <div class="text-center max-w-xl mx-auto">
+          <span class="p-3 bg-emerald-100 text-emerald-600 rounded-full text-3xl inline-block mb-2"><i class="fa-solid fa-gamepad"></i></span>
+          <h2 class="text-2xl sm:text-3xl font-extrabold text-slate-800">Game Interaktif: Kuis Pancasila Cepat!</h2>
+          <p class="text-slate-500 text-sm mt-1">Uji pemahamanmu sebelum menghadapi evaluasi utama!</p>
+        </div>
+
+        <div id="game-box" class="max-w-2xl mx-auto bg-white p-6 sm:p-8 rounded-2xl border border-slate-200 shadow-md">
+          <div class="flex justify-between items-center mb-4 text-xs font-bold text-slate-500">
+            <span id="game-progress">Soal 1 dari 5</span>
+            <span id="game-score-badge" class="bg-emerald-100 text-emerald-700 px-3 py-1 rounded-full">Skor Game: 0</span>
+          </div>
+
+          <p id="game-question" class="text-lg font-bold text-slate-800 mb-6"></p>
+
+          <div id="game-options" class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+            <!-- JS dynamic options -->
+          </div>
+
+          <div id="game-feedback" class="mt-4 p-3 rounded-xl text-center font-bold text-sm hidden"></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 8. EVALUASI & SERTIFIKAT -->
+    <section id="content-eval" class="tab-content hidden">
+      <div class="glass-card rounded-3xl p-6 sm:p-10 shadow-lg space-y-8">
+        
+        <!-- BIOGRAFI FORM -->
+        <div id="bio-section" class="bg-white p-6 sm:p-8 rounded-2xl border border-slate-200 shadow-sm space-y-6">
+          <div class="border-b pb-3 border-slate-200">
+            <h3 class="text-xl font-bold text-slate-800 flex items-center"><i class="fa-solid fa-id-card text-red-600 mr-2"></i> Formulir Biografi Siswa (Wajib Diisi)</h3>
+            <p class="text-xs text-slate-500">Data ini digunakan untuk cetak Sertifikat Kelulusan Evaluasi Pancasila.</p>
+          </div>
+
+          <form id="bio-form" onsubmit="startEvaluation(event)" class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+            <div>
+              <label class="block text-xs font-bold text-slate-700 mb-1">Nama Lengkap Siswa *</label>
+              <input type="text" id="bio-name" required placeholder="Contoh: Budi Pratama" class="w-full px-3.5 py-2.5 rounded-xl border border-slate-300 text-sm focus:ring-2 focus:ring-red-500 focus:outline-none">
+            </div>
+
+            <div>
+              <label class="block text-xs font-bold text-slate-700 mb-1">Tempat, Tanggal Lahir *</label>
+              <input type="text" id="bio-ttl" required placeholder="Contoh: Jakarta, 12 Mei 2012" class="w-full px-3.5 py-2.5 rounded-xl border border-slate-300 text-sm focus:ring-2 focus:ring-red-500 focus:outline-none">
+            </div>
+
+            <div>
+              <label class="block text-xs font-bold text-slate-700 mb-1">Hobi Siswa *</label>
+              <input type="text" id="bio-hobby" required placeholder="Contoh: Membaca & Memanah" class="w-full px-3.5 py-2.5 rounded-xl border border-slate-300 text-sm focus:ring-2 focus:ring-red-500 focus:outline-none">
+            </div>
+
+            <div>
+              <label class="block text-xs font-bold text-slate-700 mb-1">Makanan Favorit *</label>
+              <input type="text" id="bio-food" required placeholder="Contoh: Nasi Goreng" class="w-full px-3.5 py-2.5 rounded-xl border border-slate-300 text-sm focus:ring-2 focus:ring-red-500 focus:outline-none">
+            </div>
+
+            <div class="sm:col-span-2">
+              <label class="block text-xs font-bold text-slate-700 mb-1">Upload Foto Selfie / Foto Profil Siswa *</label>
+              <input type="file" id="bio-photo" accept="image/*" required onchange="previewSelfie(event)" class="w-full text-xs text-slate-500 file:mr-4 file:py-2 file:px-4 file:rounded-xl file:border-0 file:text-xs file:font-semibold file:bg-red-50 file:text-red-700 hover:file:bg-red-100">
+              <div id="photo-preview-box" class="mt-3 hidden">
+                <img id="photo-preview" class="w-24 h-24 object-cover rounded-xl border-2 border-red-500 shadow-md">
+              </div>
+            </div>
+
+            <div class="sm:col-span-2 pt-2">
+              <button type="submit" class="w-full bg-red-600 hover:bg-red-700 text-white font-bold py-3.5 rounded-xl text-sm transition-all shadow-lg flex items-center justify-center space-x-2">
+                <i class="fa-solid fa-file-pen"></i> <span>Mulai Mengerjakan Evaluasi 50 Soal</span>
+              </button>
+            </div>
+          </form>
+        </div>
+
+        <!-- EVALUASI SOAL CONTAINER -->
+        <div id="eval-questions-section" class="hidden space-y-6">
+          <div class="bg-amber-50 border border-amber-200 p-4 rounded-xl text-xs sm:text-sm text-amber-900 flex justify-between items-center">
+            <div>
+              <i class="fa-solid fa-triangle-exclamation mr-1 text-amber-600"></i>
+              Jawablah 35 Soal Pilihan Ganda dan 15 Soal Isian Singkat di bawah ini dengan tepat.
+            </div>
+            <button onclick="submitEvaluation()" class="bg-emerald-600 hover:bg-emerald-700 text-white px-4 py-2 rounded-xl text-xs font-bold shadow-md">
+              Selesai & Kumpulkan
+            </button>
+          </div>
+
+          <div id="questions-list" class="space-y-6">
+            <!-- Dynamic 50 questions injected by JS -->
+          </div>
+
+          <div class="text-center pt-4">
+            <button onclick="submitEvaluation()" class="bg-emerald-600 hover:bg-emerald-700 text-white text-base font-bold px-8 py-3.5 rounded-2xl shadow-xl transition-all">
+              <i class="fa-solid fa-check-double mr-2"></i> Kumpulkan Jawaban & Lihat Sertifikat
+            </button>
+          </div>
+        </div>
+
+        <!-- SERTIFIKAT RESULT -->
+        <div id="certificate-result-section" class="hidden space-y-6">
+          <div class="text-center">
+            <h3 class="text-2xl font-bold text-slate-800">Selamat! Evaluasi Selesai</h3>
+            <p class="text-sm text-slate-500">Sertifikat Anda telah berhasil dibuat.</p>
+            <button onclick="downloadCertificate()" class="mt-4 bg-red-600 hover:bg-red-700 text-white font-bold px-6 py-2.5 rounded-xl shadow-md text-sm">
+              <i class="fa-solid fa-file-pdf mr-2"></i> Download Sertifikat (PDF)
+            </button>
+          </div>
+
+          <!-- TEMPLATE SERTIFIKAT -->
+          <div id="certificate-node" class="certificate-border bg-amber-50/30 p-8 sm:p-12 rounded-3xl max-w-4xl mx-auto text-center relative overflow-hidden shadow-2xl border-amber-700">
+            <div class="absolute top-4 left-4 text-4xl text-amber-700/20"><i class="fa-solid fa-ribbon"></i></div>
+            <div class="absolute bottom-4 right-4 text-4xl text-amber-700/20"><i class="fa-solid fa-award"></i></div>
+
+            <div class="space-y-3">
+              <h2 class="text-3xl sm:text-4xl font-extrabold uppercase tracking-widest text-red-800">Sertifikat Penghargaan</h2>
+              <p class="text-xs sm:text-sm text-slate-600 font-semibold tracking-wider">MEDIA PEMBELAJARAN INTERAKTIF PENDIDIKAN PANCASILA KELAS VII</p>
+              <div class="w-24 h-1 bg-red-700 mx-auto my-2"></div>
+            </div>
+
+            <p class="text-xs text-slate-500 mt-4">Diberikan secara resmi kepada siswa terbaik:</p>
+
+            <div class="my-4 flex flex-col sm:flex-row items-center justify-center gap-6">
+              <img id="cert-photo" class="w-28 h-28 object-cover rounded-full border-4 border-red-700 shadow-md">
+              <div class="text-left">
+                <h3 id="cert-name" class="text-2xl sm:text-3xl font-extrabold text-slate-900">NAMA SISWA</h3>
+                <p id="cert-ttl" class="text-xs text-slate-600">Tempat, Tanggal Lahir</p>
+                <div class="text-xs text-slate-500 mt-1">
+                  <p id="cert-hobby">Hobi: -</p>
+                  <p id="cert-food">Makanan Favorit: -</p>
+                </div>
+              </div>
+            </div>
+
+            <p class="text-xs sm:text-sm text-slate-700 max-w-xl mx-auto leading-relaxed my-4">
+              Telah menyelesaikan seluruh rangkaian materi dan evaluasi pembelajaran topik <strong>"Penerapan Nilai-Nilai Pancasila"</strong> dengan Perolehan Nilai Akhir:
+            </p>
+
+            <div class="inline-block bg-gradient-to-r from-red-600 to-red-800 text-white px-8 py-3 rounded-2xl shadow-xl">
+              <span class="text-xs uppercase tracking-wider block font-medium">Skor Evaluasi</span>
+              <span id="cert-score" class="text-3xl font-extrabold">100 / 100</span>
+            </div>
+
+            <div class="mt-8 pt-6 border-t border-slate-300/80 flex justify-between items-end text-xs text-slate-600">
+              <div class="text-left">
+                <p>Tanggal Cetak: <span id="cert-date"></span></p>
+                <p>Status: <strong>LULUS SANGAT MEMUASKAN</strong></p>
+              </div>
+              <div class="text-center">
+                <p class="text-slate-400 text-[10px] mb-8">Tanda Tangan Digital Guru Pengampu</p>
+                <p class="font-bold text-slate-800 text-sm border-b border-slate-800 inline-block pb-0.5">Ahmad Hudzaifah, S.Kom</p>
+                <p class="text-[10px] text-slate-500">Guru Pengampu Pendidikan Pancasila</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+  </main>
+
+  <!-- FOOTER -->
+  <footer class="bg-slate-900 text-slate-400 py-6 text-center text-xs mt-auto">
+    <p>&copy; 2026 Media Pembelajaran Interaktif Pendidikan Pancasila | Kelas 7 SMP/MTs</p>
+    <p class="mt-1 text-slate-500">Diampu oleh: <strong>Ahmad Hudzaifah, S.Kom</strong></p>
+  </footer>
+
+  <!-- SCRIPT LOGIC -->
+  <script>
+    // DATA 10 AHLI
+    const experts = [
+      { name: "Prof. Dr. Notonagoro, S.H.", def: "Nilai adalah konsepsi abstrak dalam diri manusia mengenai apa yang dianggap baik, berharga, dan berguna bagi kehidupan.", ex: "Pembagian nilai menjadi nilai material, vital, dan kerohanian." },
+      { name: "Soerjono Soekanto", def: "Nilai merupakan konsepsi abstrak mengenai apa yang dianggap baik dan apa yang dianggap buruk dalam masyarakat.", ex: "Menjaga sopan santun dianggap nilai baik, sedangkan membentak orang tua dianggap nilai buruk." },
+      { name: "Koentjaraningrat", def: "Nilai adalah suatu bentuk budaya yang berfungsi sebagai pedoman tertinggi bagi perilaku manusia dalam masyarakat.", ex: "Budaya gotong royong warga desa saat membangun sarana ibadah." },
+      { name: "Robert M. Z. Lawang", def: "Nilai adalah gambaran mengenai apa yang diinginkan, berharga, dan pantas yang mempengaruhi perilaku sosial individu.", ex: "Siswa jujur saat ujian karena menginginkan nilai integritas diri yang tinggi." },
+      { name: "Eduard Spranger", def: "Nilai adalah orientasi kepribadian manusia yang terbagi menjadi 6 orientasi: teori, ekonomi, estetika, sosial, politik, dan agama.", ex: "Seseorang yang berorientasi sosial suka melakukan bakti sosial kemanusiaan." },
+      { name: "Prof. Dr. Kaelan, M.S.", def: "Nilai adalah kualitas dari sesuatu yang bermanfaat bagi kehidupan manusia baik lahir maupun batin.", ex: "Pancasila memiliki nilai kerohanian yang mengarahkan moral bangsa." },
+      { name: "Sidi Gazalba", def: "Nilai adalah sesuatu yang bersifat abstrak yang diikat oleh tolok ukur kebaikan dan kebenaran hati nurani.", ex: "Menolong orang tanpa pamrih adalah wujud nilai kebaikan sejati." },
+      { name: "Wood", def: "Nilai merupakan petunjuk umum yang mengarahkan tingkah laku dan kepuasan dalam kehidupan sehari-hari.", ex: "Norma antrean di fasilitas umum mengarahkan masyarakat berlaku tertib." },
+      { name: "Hendropuspito", def: "Nilai adalah segala sesuatu yang dihargai oleh masyarakat karena memiliki fungsi bagi perkembangan manusia.", ex: "Pendidikan dihargai masyarakat karena memajukan kecerdasan generasi muda." },
+      { name: "Darmodiharjo, D.", def: "Nilai Pancasila adalah kenyataan yang objektif yang digali dari pandangan hidup bangsa Indonesia.", ex: "Sikap musyawarah mufakat yang sudah dilaksanakan nenek moyang bangsa." }
+    ];
+
+    // DATA GAME INTERMEZZO
+    const gameData = [
+      { q: "Manakah yang termasuk contoh penerapan Sila Pertama Pancasila?", opts: ["Menghormati teman beribadah", "Piket kelas bersama", "Musyawarah memilih ketua kelas", "Suka membeli produk lokal"], a: 0 },
+      { q: "Menurut Prof. Notonagoro, cangkul bagi petani termasuk jenis nilai...", opts: ["Nilai Material", "Nilai Vital", "Nilai Kerohanian", "Nilai Absolut"], a: 1 },
+      { q: "Sifat Pancasila yang puncaknya Sila Pertama mendasari sila lainnya disebut...", opts: ["Hierarkis Piramidal", "Objektif Subjektif", "Nilai Praksis", "Nilai Instrumental"], a: 0 },
+      { q: "UUD 1945 dan Undang-Undang dalam tingkatan nilai Pancasila kedudukannya sebagai...", opts: ["Nilai Dasar", "Nilai Praksis", "Nilai Instrumental", "Nilai Material"], a: 2 },
+      { q: "Sikap nyata sehari-hari dalam menolong korban bencana alam merupakan wujud...", opts: ["Nilai Praksis", "Nilai Dasar", "Nilai Instrumental", "Nilai Vital"], a: 0 }
+    ];
+
+    // DATA EVALUASI (35 PG + 15 ISIAN = 50 SOAL)
+    const evalData = [
+      // 35 PILIHAN GANDA
+      { q: "Sila pertama Pancasila dilambangkan dengan simbol...", opts: ["Bintang", "Rantai", "Pohon Beringin", "Kepala Banteng"], a: 0, type: "pg" },
+      { q: "Menurut Prof. Notonagoro, nilai yang berguna bagi fisik/jasmani manusia dinamakan...", opts: ["Nilai Vital", "Nilai Material", "Nilai Kerohanian", "Nilai Moral"], a: 1, type: "pg" },
+      { q: "Buku pelajaran dan alat tulis bagi seorang siswa sekolah merupakan contoh dari...", opts: ["Nilai Material", "Nilai Vital", "Nilai Kebenaran", "Nilai Absolut"], a: 1, type: "pg" },
+      { q: "Pancasila mengandung susunan yang berjenjang dan melingkupi, hal ini disebut...", opts: ["Sifat Subjektif", "Sifat Absolut", "Hierarkis Piramidal", "Wujud Praksis"], a: 2, type: "pg" },
+      { q: "Undang-Undang Dasar Negara Republik Indonesia Tahun 1945 kedudukannya sebagai...", opts: ["Nilai Dasar", "Nilai Instrumental", "Nilai Praksis", "Nilai Vital"], a: 1, type: "pg" },
+      { q: "Penerapan langsung nilai-nilai Pancasila dalam kehidupan sehari-hari disebut...", opts: ["Nilai Dasar", "Nilai Instrumental", "Nilai Praksis", "Nilai Kebenaran"], a: 2, type: "pg" },
+      { q: "Sila yang menekankan musyawarah untuk mencapai mufakat adalah sila ke-...", opts: ["1", "2", "3", "4"], a: 3, type: "pg" },
+      { q: "Nilai yang berasal dari unsur akal/rasio manusia dinamakan nilai...", opts: ["Kebenaran", "Keindahan", "Kebaikan", "Religius"], a: 0, type: "pg" },
+      { q: "Nilai keindahan yang bersumber dari unsur estetika/perasaan manusia disebut nilai...", opts: ["Kebajikan", "Kebenaran", "Keindahan", "Material"], a: 2, type: "pg" },
+      { q: "Tokoh sosiologi Indonesia yang mengartikan nilai sebagai konsep abstrak tentang baik dan buruk adalah...", opts: ["Soerjono Soekanto", "Koentjaraningrat", "Alfian", "Moerdiono"], a: 0, type: "pg" },
+      { q: "Sifat nilai Pancasila yang tidak berubah sepanjang masa dinamakan bersifat...", opts: ["Subjektif", "Sementara", "Absolut / Mutlak", "Kondisional"], a: 2, type: "pg" },
+      { q: "Bangsa Indonesia bangga dan mencintai tanah airnya merupakan wujud pengamalan Sila ke-...", opts: ["1", "2", "3", "4"], a: 2, type: "pg" },
+      { q: "Pancasila bersifat objektif karena...", opts: ["Termuat dalam Pembukaan UUD 1945", "Dibuat oleh presiden", "Hanya berlaku di sekolah", "Dapat diubah kapan saja"], a: 0, type: "pg" },
+      { q: "Sila yang menjadi dasar dan puncak utama dari seluruh susunan Pancasila adalah...", opts: ["Sila Pertama", "Sila Kedua", "Sila Ketiga", "Sila Keempat"], a: 0, type: "pg" },
+      { q: "Sikap menghargai hasil karya orang lain merupakan bagian dari pengamalan sila ke-...", opts: ["2", "3", "4", "5"], a: 3, type: "pg" },
+      { q: "Pernyataan 'Nilai melekat pada hati nurani bangsa Indonesia sendiri' menunjukkan sifat...", opts: ["Objektif", "Subjektif", "Material", "Vital"], a: 1, type: "pg" },
+      { q: "Ahli yang membagi nilai menjadi 6 orientasi (Teori, Ekonomi, Estetika, Sosial, Politik, Agama) adalah...", opts: ["Eduard Spranger", "Wood", "Notonagoro", "Gazalba"], a: 0, type: "pg" },
+      { q: "Nilai dasar Pancasila bersifat...", opts: ["Praktis dan berubah-ubah", "Abstrak dan universal", "Khusus dan rinci", "Sementara"], a: 1, type: "pg" },
+      { q: "Melaksanakan piket kelas secara bersama-sama menunjukkan pengamalan sila ke-...", opts: ["3 dan 5", "1 dan 2", "1 dan 4", "2 dan 3"], a: 0, type: "pg" },
+      { q: "Hakekat dari kelima sila Pancasila yang belum tersentuh penyesuaian khusus disebut...", opts: ["Nilai Praksis", "Nilai dasar", "Nilai Instrumental", "Nilai Organik"], a: 1, type: "pg" },
+      { q: "Menjaga kerukunan antar umat beragama adalah perwujudan dari sila...", opts: ["Ketuhanan Yang Maha Esa", "Persatuan Indonesia", "Keadilan Sosial", "Kemanusiaan"], a: 0, type: "pg" },
+      { q: "Nilai kebaikan atau etika bersumber dari unsur...", opts: ["Kehendak / Karsa", "Akal", "Perasaan", "Jasmani"], a: 0, type: "pg" },
+      { q: "Nilai religius bersumber dari...", opts: ["Pikiran manusia", "Wahyu Tuhan Yang Maha Esa", "Adat istiadat luar", "UUD 1945"], a: 1, type: "pg" },
+      { q: "Gotong royong membersihkan lingkungan sekolah merupakan bentuk nilai...", opts: ["Praksis", "Instrumental", "Material", "Absolut"], a: 0, type: "pg" },
+      { q: "Berikut ini yang BUKAN merupakan fungsi nilai adalah...", opts: ["Pedoman berperilaku", "Penunjuk arah moral", "Pemecah belah persatuan", "Benteng diri dari pengaruh buruk"], a: 2, type: "pg" },
+      { q: "Sila kedua Pancasila dilambangkan oleh...", opts: ["Bintang", "Rantai Emas", "Pohon Beringin", "Padi dan Kapas"], a: 1, type: "pg" },
+      { q: "Menerima hasil keputusan musyawarah dengan ikhlas adalah kewajiban pengamalan sila ke-...", opts: ["1", "2", "3", "4"], a: 3, type: "pg" },
+      { q: "Kata 'Nilai' secara etimologis berasal dari bahasa Latin yaitu...", opts: ["Valere", "Norma", "Etika", "Ratio"], a: 0, type: "pg" },
+      { q: "Kumpulan tata tertib sekolah termasuk dalam kategori nilai...", opts: ["Dasar", "Instrumental", "Praksis", "Fisik"], a: 1, type: "pg" },
+      { q: "Tidak bergaya hidup mewah dan hemat merupakan sikap sila ke-...", opts: ["2", "3", "4", "5"], a: 3, type: "pg" },
+      { q: "Pancasila sebagai Staatsfundamentalnorm artinya Pancasila sebagai...", opts: ["Pokok norma hukum negara dasar", "Hukum internasional", "Aturan kelas", "Keputusan pribadi"], a: 0, type: "pg" },
+      { q: "Menghormati hak-hak orang lain adalah kewajiban setiap warga negara sesuai sila ke-...", opts: ["5", "3", "2", "1"], a: 0, type: "pg" },
+      { q: "Kepala Banteng adalah lambang Sila ke-...", opts: ["2", "3", "4", "5"], a: 2, type: "pg" },
+      { q: "Tokoh yang membagi wujud nilai menjadi Nilai Dasar, Instrumental, dan Praksis adalah...", opts: ["Prof. Oetojo Oesman / Moerdiono", "Soerjono Soekanto", "Spranger", "Wood"], a: 0, type: "pg" },
+      { q: "Sikap tenggang rasa dan tidak semena-mena kepada orang lain sesuai sila ke-...", opts: ["1", "2", "3", "4"], a: 1, type: "pg" },
+
+      // 15 ISIAN SINGKAT
+      { q: "Landasan utama dan puncak tertinggi dalam hierarki piramidal Pancasila adalah Sila ke-...", key: ["1", "satu", "pertama"], type: "isian" },
+      { q: "Sila ketiga Pancasila dilambangkan dengan gambar...", key: ["pohon beringin", "beringin"], type: "isian" },
+      { q: "Nilai yang berguna bagi jasmani atau tubuh fisik manusia menurut Notonagoro disebut nilai...", key: ["material"], type: "isian" },
+      { q: "Sila 'Keadilan Sosial bagi Seluruh Rakyat Indonesia' dilambangkan oleh padi dan...", key: ["kapas"], type: "isian" },
+      { q: "Bentuk tindakan nyata sehari-hari dalam melaksanakan nilai Pancasila dinamakan nilai...", key: ["praksis"], type: "isian" },
+      { q: "Sikap utama dalam pengambilan keputusan bersama pada sila keempat adalah...", key: ["musyawarah", "musyawarah mufakat"], type: "isian" },
+      { q: "Peraturan perundang-undangan seperti UUD 1945 tergolong sebagai nilai...", key: ["instrumental"], type: "isian" },
+      { q: "Nilai yang bersumber dari kehendak atau karsa manusia disebut nilai moral atau nilai...", key: ["kebaikan", "etika"], type: "isian" },
+      { q: "Mata pelajaran Pendidikan Pancasila di kelas 7 ini diampu oleh Bapak...", key: ["ahmad hudzaifah", "ahmad hudzaifah, s.kom"], type: "isian" },
+      { q: "Sifat Pancasila yang berarti tidak berubah sepanjang waktu adalah bersifat mutlak atau...", key: ["absolut"], type: "isian" },
+      { q: "Nilai yang bersumber dari unsur akal pikiran manusia dinamakan nilai...", key: ["kebenaran"], type: "isian" },
+      { q: "Mengutamakan membeli barang buatan dalam negeri merupakan wujud cinta tanah air sesuai sila ke-...", key: ["3", "tiga", "ketiga"], type: "isian" },
+      { q: "Kata 'Valere' asal kata nilai berasal dari bahasa...", key: ["latin"], type: "isian" },
+      { q: "Pancasila terdiri dari berapa sila?", key: ["5", "lima"], type: "isian" },
+      { q: "Membantu teman yang tertimpa musibah tanpa membedakan suku adalah wujud Sila ke-...", key: ["2", "dua", "kedua"], type: "isian" }
+    ];
+
+    let userBio = {};
+    let currentGameIndex = 0;
+    let gameScore = 0;
+
+    // INITIALIZATION
+    window.onload = function() {
+      renderExperts();
+      renderGameQuestion();
+      renderEvaluationQuestions();
+    };
+
+    // TAB SWITCHING
+    function switchTab(tabId) {
+      document.querySelectorAll('.tab-content').forEach(el => el.classList.add('hidden'));
+      document.querySelectorAll('.nav-btn').forEach(btn => btn.classList.remove('active', 'text-slate-600'));
+      
+      document.getElementById('content-' + tabId).classList.remove('hidden');
+      document.getElementById('tab-' + tabId).classList.add('active');
+    }
+
+    // RENDER EXPERTS
+    function renderExperts() {
+      const container = document.getElementById('expert-container');
+      container.innerHTML = experts.map((e, idx) => `
+        <div class="bg-white p-5 rounded-2xl border border-slate-200 shadow-sm hover:shadow-md transition-all">
+          <div class="flex items-center space-x-3 mb-2">
+            <span class="bg-red-100 text-red-600 font-bold text-xs px-2.5 py-1 rounded-lg">Ahli #${idx+1}</span>
+            <h4 class="font-bold text-slate-800 text-base">${e.name}</h4>
+          </div>
+          <p class="text-xs text-slate-600 leading-relaxed mb-3"><strong>Definisi:</strong> "${e.def}"</p>
+          <div class="bg-slate-50 p-2.5 rounded-xl text-xs text-slate-600 border">
+            <strong>Contoh:</strong> ${e.ex}
+          </div>
+        </div>
+      `).join('');
+    }
+
+    // INTERMEZZO GAME LOGIC
+    function renderGameQuestion() {
+      if (currentGameIndex >= gameData.length) {
+        document.getElementById('game-box').innerHTML = `
+          <div class="text-center py-6">
+            <i class="fa-solid fa-trophy text-amber-500 text-5xl mb-3"></i>
+            <h3 class="text-xl font-bold text-slate-800">Game Selesai!</h3>
+            <p class="text-sm text-slate-600 mt-1">Skor Akhir Game Anda: <strong>${gameScore} / ${gameData.length * 20}</strong></p>
+            <button onclick="resetGame()" class="mt-4 bg-emerald-600 text-white px-5 py-2 rounded-xl text-xs font-bold shadow-md">Main Lagi</button>
+          </div>
+        `;
+        return;
+      }
+
+      const q = gameData[currentGameIndex];
+      document.getElementById('game-progress').innerText = `Soal ${currentGameIndex+1} dari ${gameData.length}`;
+      document.getElementById('game-question').innerText = q.q;
+      
+      const optsContainer = document.getElementById('game-options');
+      optsContainer.innerHTML = q.opts.map((opt, i) => `
+        <button onclick="checkGameAnswer(${i})" class="w-full text-left p-3.5 rounded-xl border border-slate-200 text-xs sm:text-sm font-medium hover:bg-red-50 hover:border-red-300 transition-all">
+          ${String.fromCharCode(65+i)}. ${opt}
+        </button>
+      `).join('');
+    }
+
+    function checkGameAnswer(chosen) {
+      const q = gameData[currentGameIndex];
+      const feedback = document.getElementById('game-feedback');
+      feedback.classList.remove('hidden', 'bg-emerald-100', 'text-emerald-800', 'bg-red-100', 'text-red-800');
+
+      if (chosen === q.a) {
+        gameScore += 20;
+        feedback.classList.add('bg-emerald-100', 'text-emerald-800');
+        feedback.innerText = "Jawaban Tepat! +20 Poin";
+      } else {
+        feedback.classList.add('bg-red-100', 'text-red-800');
+        feedback.innerText = `Jawaban Kurang Tepat. Jawaban Benar: ${q.opts[q.a]}`;
+      }
+
+      document.getElementById('game-score-badge').innerText = `Skor Game: ${gameScore}`;
+      setTimeout(() => {
+        feedback.classList.add('hidden');
+        currentGameIndex++;
+        renderGameQuestion();
+      }, 1200);
+    }
+
+    function resetGame() {
+      currentGameIndex = 0;
+      gameScore = 0;
+      document.getElementById('game-score-badge').innerText = `Skor Game: 0`;
+      renderGameQuestion();
+    }
+
+    // EVALUATION FORM & RENDER
+    function previewSelfie(event) {
+      const reader = new FileReader();
+      reader.onload = function() {
+        const preview = document.getElementById('photo-preview');
+        preview.src = reader.result;
+        document.getElementById('photo-preview-box').classList.remove('hidden');
+      }
+      if(event.target.files[0]) reader.readAsDataURL(event.target.files[0]);
+    }
+
+    function startEvaluation(e) {
+      e.preventDefault();
+      userBio = {
+        name: document.getElementById('bio-name').value,
+        ttl: document.getElementById('bio-ttl').value,
+        hobby: document.getElementById('bio-hobby').value,
+        food: document.getElementById('bio-food').value,
+        photo: document.getElementById('photo-preview').src
+      };
+
+      document.getElementById('bio-section').classList.add('hidden');
+      document.getElementById('eval-questions-section').classList.remove('hidden');
+      window.scrollTo({ top: 300, behavior: 'smooth' });
+    }
+
+    function renderEvaluationQuestions() {
+      const container = document.getElementById('questions-list');
+      container.innerHTML = evalData.map((item, idx) => {
+        if (item.type === 'pg') {
+          return `
+            <div class="bg-white p-5 rounded-2xl border border-slate-200 shadow-sm">
+              <p class="font-bold text-slate-800 text-sm mb-3"><span class="bg-red-100 text-red-700 px-2 py-0.5 rounded text-xs mr-2">Soal ${idx+1} [PG]</span> ${item.q}</p>
+              <div class="grid grid-cols-1 sm:grid-cols-2 gap-2 text-xs sm:text-sm">
+                ${item.opts.map((o, i) => `
+                  <label class="flex items-center space-x-2 p-2.5 rounded-xl border border-slate-200 hover:bg-slate-50 cursor-pointer">
+                    <input type="radio" name="eval-${idx}" value="${i}" class="text-red-600 focus:ring-red-500">
+                    <span>${String.fromCharCode(65+i)}.${o}</span>
+                  </label>
+                `).join('')}
+              </div>
+            </div>
+          `;
+        } else {
+          return `
+            <div class="bg-white p-5 rounded-2xl border border-slate-200 shadow-sm">
+              <p class="font-bold text-slate-800 text-sm mb-3"><span class="bg-amber-100 text-amber-800 px-2 py-0.5 rounded text-xs mr-2">Soal ${idx+1} [Isian Singkat]</span> ${item.q}</p>
+              <input type="text" id="isian-${idx}" placeholder="Ketik jawaban singkat di sini..." class="w-full px-3.5 py-2.5 rounded-xl border border-slate-300 text-xs sm:text-sm focus:ring-2 focus:ring-red-500 focus:outline-none">
+            </div>
+          `;
+        }
+      }).join('');
+    }
+
+    function submitEvaluation() {
+      let correctCount = 0;
+
+      evalData.forEach((item, idx) => {
+        if (item.type === 'pg') {
+          const selected = document.querySelector(`input[name="eval-${idx}"]:checked`);
+          if (selected && parseInt(selected.value) === item.a) {
+            correctCount++;
+          }
+        } else if (item.type === 'isian') {
+          const val = document.getElementById(`isian-${idx}`)?.value.trim().toLowerCase();
+          if (val && item.key.includes(val)) {
+            correctCount++;
+          }
+        }
+      });
+
+      const finalScore = Math.round((correctCount / evalData.length) * 100);
+
+      // Populate Certificate
+      document.getElementById('cert-name').innerText = userBio.name || "Nama Siswa";
+      document.getElementById('cert-ttl').innerText = userBio.ttl || "-";
+      document.getElementById('cert-hobby').innerText = "Hobi: " + (userBio.hobby || "-");
+      document.getElementById('cert-food').innerText = "Makanan Favorit: " + (userBio.food || "-");
+      document.getElementById('cert-photo').src = userBio.photo || "https://via.placeholder.com/150";
+      document.getElementById('cert-score').innerText = `${finalScore} / 100`;
+      document.getElementById('cert-date').innerText = new Date().toLocaleDateString('id-ID', { day: 'numeric', month: 'long', year: 'numeric' });
+
+      // Show Section
+      document.getElementById('eval-questions-section').classList.add('hidden');
+      document.getElementById('certificate-result-section').classList.remove('hidden');
+      window.scrollTo({ top: 300, behavior: 'smooth' });
+    }
+
+    function downloadCertificate() {
+      const element = document.getElementById('certificate-node');
+      const opt = {
+        margin:       0.2,
+        filename:     `Sertifikat_Pancasila_${userBio.name || 'Siswa'}.pdf`,
+        image:        { type: 'jpeg', quality: 0.98 },
+        html2canvas:  { scale: 2 },
+        jsPDF:        { unit: 'in', format: 'letter', orientation: 'landscape' }
+      };
+      html2pdf().set(opt).from(element).save();
+    }
+  </script>
+</body>
+</html>
+```eof
+
+---
+
+### 🌟 Fitur Utama Aplikasi Pembelajaran Interaktif Ini:
+
+1. **Header & Identitas Pembelajaran Khusus**:
+   - Mata Pelajaran: **Pendidikan Pancasila**
+   - Guru Pengampu: **Ahmad Hudzaifah, S.Kom**
+   - Kelas: **7 / VII**
+   - Topik: **Penerapan Nilai-Nilai Pancasila**
+
+2. **Navigasi 8 Tab Lengkap**:
+   - **Tab 1 (Capaian Pembelajaran)**: 4 poin CP yang terstruktur dan mudah dipahami.
+   - **Tab 2 (Pengertian Nilai-Nilai Pancasila)**: Materi mendalam per Sila beserta contoh riil kehidupan sehari-hari.
+   - **Tab 3 (Definisi 10 Ahli)**: Memuat teori nilai dari **10 Ahli** (*Notonagoro, Soerjono Soekanto, Koentjaraningrat, Robert Lawang, Eduard Spranger, Kaelan, Sidi Gazalba, Wood, Hendropuspito, Darmodiharjo*) lengkap dengan contohnya.
+   - **Tab 4 (Klasifikasi Nilai)**: Pembagian Nilai Material, Vital, dan Kerohanian menurut Prof. Notonagoro.
+   - **Tab 5 (Sifat Nilai-Nilai Pancasila)**: Detail *Hierarkis Piramidal*, *Objektif & Subjektif*, serta *Absolut/Mutlak* dilengkapi referensi ahli.
+   - **Tab 6 (Wujud Praksis)**: Penjelasan lengkap *Nilai Dasar*, *Nilai Instrumental*, dan *Nilai Praksis*.
+   - **Tab 7 (Intermezzo Game)**: Game Kuis Poin Cepat Interaktif.
+   - **Tab 8 (Evaluasi 50 Soal & Sertifikat PDF)**:
+     - Form Biografi Siswa (Nama, TTL, Hobi, Makanan Favorit, & **Foto Selfie baru**).
+     - **50 Soal Evaluasi Presisi** (35 Pilihan Ganda & 15 Isian Singkat) yang diambil langsung dari materi Tab 2 - 6.
+     - **Sertifikat Kelulusan Otomatis** yang menyertakan foto selfie siswa, data biografi, nilai evaluasi, serta tanda tangan digital Bapak Ahmad Hudzaifah, S.Kom yang dapat **didownload langsung sebagai file PDF**.
